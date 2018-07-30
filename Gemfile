@@ -15,3 +15,7 @@ group :development, :test do
   gem 'rspec'
   gem 'rubocop', require: false
 end
+
+group :test do
+  gem 'rspec_sequel_matchers'
+end

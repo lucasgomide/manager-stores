@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require File.expand_path('application/database_configuration', __dir__)
+require 'logger'
+
 
 # Application module has basic information about application and
 # provide access to app's configuration
@@ -27,10 +29,8 @@ end
 
 require 'bundler'
 Bundler.require
-require 'pry'
 
 $LOAD_PATH << File.expand_path(__dir__)
-require 'logger'
 
 set :environment, Application.env
 set :database, Application.configuration.database.url

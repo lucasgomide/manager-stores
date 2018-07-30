@@ -39,6 +39,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
+    rspec_sequel_matchers (0.5.0)
+      sequel (>= 3.8.0)
     rubocop (0.58.2)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -74,6 +76,7 @@ DEPENDENCIES
   rake
   rgeo-geojson
   rspec
+  rspec_sequel_matchers
   rubocop
   sequel
   sinatra
