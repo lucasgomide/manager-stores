@@ -24,6 +24,11 @@ namespace :db do
       Sequel::Migrator.run(db, "db/migrations", target: version)
     end
   end
+
+  desc "Add the seed data"
+  task :seed do
+    ruby "./db/seeds.rb"
+  end
 end
 
 desc "Open application console"
