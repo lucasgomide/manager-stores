@@ -15,6 +15,9 @@ GEM
     rack-protection (2.0.3)
       rack
     rake (12.3.1)
+    rgeo (1.1.1)
+    rgeo-geojson (2.0.0)
+      rgeo (~> 1.0)
     sequel (5.10.0)
     sinatra (2.0.3)
       mustermann (~> 1.0)
@@ -38,6 +41,7 @@ DEPENDENCIES
   pg
   pry
   rake
+  rgeo-geojson
   sequel
   sinatra
   sinatra-sequel
