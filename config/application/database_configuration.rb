@@ -23,7 +23,7 @@ module Application
 
     def configuration
       conf = File.read(@configuration_path)
-      @configuration ||= YAML.safe_load(ERB.new(conf).result)
+      @configuration ||= YAML.safe_load(ERB.new(conf).result, [], [], true)
                              .fetch(Application.env, {})
                              .freeze
     end

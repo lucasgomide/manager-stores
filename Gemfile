@@ -9,8 +9,9 @@ gem 'sinatra'
 gem 'sinatra-sequel'
 gem 'thin'
 
-group :development do
+group :development, :test do
   gem 'pry'
   gem 'rake'
+  gem 'rspec'
   gem 'rubocop', require: false
 end

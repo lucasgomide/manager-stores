@@ -3,10 +3,5 @@
 
 require 'config/application'
 
-require 'logger'
-set :database, Application.configuration.database.url
-require_relative 'app/model'
-
-configure :development do
-  database.loggers << Logger.new(STDOUT)
-end
+files = Dir.glob(File.join(Application.root, 'app', '**', '*rb'))
+files.each { |file| require file }
