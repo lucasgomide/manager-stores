@@ -2,7 +2,7 @@
 
 require 'rgeo/geo_json'
 
-require File.expand_path('../config/application', __dir__)
+require File.expand_path('../config/boot', __dir__)
 set :database, Application.configuration.database.url
 
 require File.expand_path('../app/model', __dir__)

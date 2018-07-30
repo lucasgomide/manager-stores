@@ -3,7 +3,7 @@
 ENV['APP_ENV'] = 'test'
 require 'pry'
 require 'rspec_sequel_matchers'
-require File.expand_path('../config/application', __dir__)
+require File.expand_path('../config/boot', __dir__)
 
 files = Dir.glob(File.join(Application.root, 'app', '**', '*rb')) +
         Dir.glob(File.join(Application.root, 'spec', 'support', '*.rb'))
