@@ -1,0 +1,12 @@
+default: &default
+  url: <%= ENV['DATABASE_URL'] || 'postgres://localhost/manager-store' %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  url: 'postgres://localhost/manager-store-test'
+
+production:
+  <<: *default
