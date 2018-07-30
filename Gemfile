@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-gem 'sinatra'
-gem 'thin'
-gem 'sequel'
-gem 'sinatra-sequel'
 gem 'pg'
 gem 'rgeo-geojson'
+gem 'sequel'
+gem 'sinatra'
+gem 'sinatra-sequel'
+gem 'thin'
 
 group :development do
-  gem 'rake'
   gem 'pry'
+  gem 'rake'
+  gem 'rubocop', require: false
 end

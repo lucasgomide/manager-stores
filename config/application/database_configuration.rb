@@ -1,7 +1,13 @@
+# frozen_string_literal: true
+
 require 'yaml'
 module Application
+  # DatabaseConfiguration is a wrapper of some database
+  # configuration
   class DatabaseConfiguration
-    def initialize(configuration_path = "#{Application.root}/config/database.yml")
+    def initialize(
+      configuration_path = "#{Application.root}/config/database.yml"
+    )
       @configuration_path = configuration_path
     end
 
@@ -17,9 +23,9 @@ module Application
 
     def configuration
       conf = File.read(@configuration_path)
-      @configuration ||= YAML.load(ERB.new(conf).result)
-        .fetch(Application.env, {})
-        .freeze
+      @configuration ||= YAML.safe_load(ERB.new(conf).result)
+                             .fetch(Application.env, {})
+                             .freeze
     end
   end
 end
