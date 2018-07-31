@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'validator'
 module Validators
   class AddressValidator
@@ -15,12 +17,9 @@ module Validators
     private
 
     def validate
-      unless GeometryType.point?(@address.coordinates)
-        add_error(
-          :coordinates,
-          'coordinates must be a valid geometry Point'
-        )
-      end
+      message_error = 'coordinates must be a valid geometry Point'
+      coordinates = @address.coordinates
+      add_error(:coordinates, message_error) unless GeometryType.point?(coordinates)
     end
   end
 end

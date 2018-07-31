@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'validator'
 module Validators
   class CoverageAreaValidator
@@ -15,12 +17,9 @@ module Validators
     private
 
     def validate
-      unless GeometryType.multipolygon?(@coverage_area.coordinates)
-        add_error(
-          :coordinates,
-          'coordinates must be a valid geometry MultiPolygon'
-        )
-      end
+      message_error = 'coordinates must be a valid geometry MultiPolygon'
+      coordinates = @coverage_area.coordinates
+      add_error(:coordinates, message_error) unless GeometryType.multipolygon?(coordinates)
     end
   end
 end

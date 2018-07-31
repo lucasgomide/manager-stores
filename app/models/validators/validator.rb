@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Validator
   def add_error(field, message)
     errors << { field: field, message: message }

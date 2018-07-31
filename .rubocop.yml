@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - '**/*_spec.rb'
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 95

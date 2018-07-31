@@ -17,6 +17,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec_sequel_matchers'
   gem 'factory_bot'
+  gem 'rspec_sequel_matchers'
 end

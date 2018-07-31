@@ -4,12 +4,12 @@ RSpec.describe Validators::CoverageAreaValidator, type: :validator do
   subject(:validator) { described_class.new(coverage_area) }
 
   describe '#valid?' do
-    subject { validator.valid? }
+    subject(:valid?) { validator.valid? }
     context 'when address coordinates' do
       context 'is invalid' do
-        let(:address) { build(:address, coordinates: { foo: :bar }) }
+        let(:coverage_area) { build(:coverage_area, coordinates: { foo: :bar }) }
         let(:error_message) {
-          'coordinates must be a valid geometry Multipolygon'
+          'coordinates must be a valid geometry MultiPolygon'
         }
         it do
           valid?
