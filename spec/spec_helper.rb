@@ -5,7 +5,7 @@ require 'pry'
 require 'rspec_sequel_matchers'
 require File.expand_path('../config/boot', __dir__)
 
-files = Dir.glob(File.join(Application.root, 'app', '**', '*rb')) +
+files = Dir.glob(File.join(Application.root, 'app', '**', '**', '*rb')) +
         Dir.glob(File.join(Application.root, 'spec', 'support', '*.rb'))
 files.each { |file| require file }
 
