@@ -4,4 +4,4 @@ AllCops:
 Documentation:
   Enabled: false
 Metrics/LineLength:
-  Max: 95
+  Max: 105

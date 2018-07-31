@@ -1,14 +1,20 @@
 # frozen_string_literal: true
 
 RSpec.describe Validators::AddressValidator, type: :validator do
-  subject(:validator) { described_class.new(address) }
+  let(:geometry_validator) { spy(Geometry::Validator) }
+  subject(:validator) { described_class.new(address, geometry_validator) }
 
   describe '#valid?' do
     subject(:valid?) { validator.valid? }
-    context 'when address coordinates' do
+    context "when address' coordinates" do
       context 'is invalid' do
-        let(:address) { build(:address, coordinates: { foo: :bar }) }
-        let(:error_message) { 'coordinates must be a valid geometry Point' }
+        before do
+          allow(geometry_validator).to receive(:point?) { false }
+        end
+
+        let(:address) { build(:address, coordinates: nil) }
+
+        let(:error_message) { 'must be a valid geometry Point' }
         it do
           valid?
           expect(validator.errors.count).to eql(1)
@@ -21,26 +27,24 @@ RSpec.describe Validators::AddressValidator, type: :validator do
             message: error_message
           )
         end
+
+        it do
+          subject
+          expect(geometry_validator).to have_received(:point?).with(address.coordinates)
+        end
       end
 
-      context 'is nil' do
-        let(:address) { build(:address, coordinates: nil) }
-        it { is_expected.to be_falsey }
-      end
-
-      context 'is not an array' do
-        let(:address) { build(:address, coordinates: { foo: :bar }) }
-        it { is_expected.to be_falsey }
-      end
-
-      context 'is an array and is not valid Geometry Point' do
-        let(:address) { build(:address, coordinates: [[[10, 40]]]) }
-        it { is_expected.to be_falsey }
-      end
-
-      context 'is an array and is valid Geometry Point' do
+      context 'is valid' do
+        before do
+          allow(geometry_validator).to receive(:point?) { true }
+        end
         let(:address) { build(:address, coordinates: [10, 40]) }
         it { is_expected.to be_truthy }
+
+        it do
+          subject
+          expect(geometry_validator).to have_received(:point?).with(address.coordinates)
+        end
       end
     end
   end

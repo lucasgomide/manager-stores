@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Validators::GeometryType do
+RSpec.describe Geometry::Validator do
   subject(:validator) { described_class }
 
   describe '#point?' do

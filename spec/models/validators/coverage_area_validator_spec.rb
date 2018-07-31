@@ -1,15 +1,20 @@
 # frozen_string_literal: true
 
 RSpec.describe Validators::CoverageAreaValidator, type: :validator do
-  subject(:validator) { described_class.new(coverage_area) }
+  let(:geometry_validator) { spy(Geometry::Validator) }
+  subject(:validator) { described_class.new(coverage_area, geometry_validator) }
 
   describe '#valid?' do
     subject(:valid?) { validator.valid? }
-    context 'when address coordinates' do
+    context "when coverage area's coordinates" do
       context 'is invalid' do
+        before do
+          allow(geometry_validator).to receive(:multipolygon?) { false }
+        end
+
         let(:coverage_area) { build(:coverage_area, coordinates: { foo: :bar }) }
         let(:error_message) {
-          'coordinates must be a valid geometry MultiPolygon'
+          'must be a valid geometry MultiPolygon'
         }
         it do
           valid?
@@ -23,27 +28,24 @@ RSpec.describe Validators::CoverageAreaValidator, type: :validator do
             message: error_message
           )
         end
+
+        it do
+          subject
+          expect(geometry_validator).to have_received(:multipolygon?).with(coverage_area.coordinates)
+        end
       end
 
-      context 'is nil' do
-        let(:coverage_area) { build(:coverage_area, coordinates: nil) }
-        it { is_expected.to be_falsey }
-      end
-
-      context 'is not an array' do
-        let(:coverage_area) { build(:coverage_area, coordinates: { foo: :bar }) }
-        it { is_expected.to be_falsey }
-      end
-
-      context 'is an array and is not valid Geometry MultiPolygon' do
-        let(:coverage_area) { build(:coverage_area, coordinates: [10, 40]) }
-        it { is_expected.to be_falsey }
-      end
-
-
-      context 'is an array and is valid Geometry MultiPolygon' do
+      context 'is valid' do
+        before do
+          allow(geometry_validator).to receive(:multipolygon?) { true }
+        end
         let(:coverage_area) { build(:coverage_area, coordinates: [[[[-43.36556, -22.99669],[-43.36539, -23.01928]]]]) }
         it { is_expected.to be_truthy }
+
+        it do
+          subject
+          expect(geometry_validator).to have_received(:multipolygon?).with(coverage_area.coordinates)
+        end
       end
     end
   end

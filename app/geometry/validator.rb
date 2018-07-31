@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Validators
-  class GeometryType
+module Geometry
+  class Validator
     def self.point?(geometry)
       return false unless geometry.is_a?(Array)
       return false if geometry.first.is_a?(Array)
