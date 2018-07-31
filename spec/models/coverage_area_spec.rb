@@ -16,4 +16,13 @@ RSpec.describe CoverageArea, type: :model do
       expect { subject.valid? }.to_not change { subject.errors.size }
     end
   end
+
+  context 'save resource' do
+    subject { build(:coverage_area) }
+
+    it 'should encode coordinates' do
+      subject.save
+      expect(subject.coordinates).to be_a(String)
+    end
+  end
 end

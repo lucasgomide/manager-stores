@@ -4,9 +4,10 @@ require_relative '../geometry/converter'
 
 class CoverageArea < Sequel::Model(:coverage_areas)
   include Geometry::Converter
+  many_to_one :store
 
   def before_save
-    self.coordinates = convert_to(coordinates, 'MultiPolygon')
+    self.coordinates = encode_geojson!(coordinates, 'MultiPolygon')
     super
   end
 

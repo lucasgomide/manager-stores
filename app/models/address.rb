@@ -3,9 +3,10 @@
 require_relative '../geometry/converter'
 class Address < Sequel::Model(:addresses)
   include Geometry::Converter
+  many_to_one :store
 
   def before_save
-    self.coordinates = convert_to(coordinates, 'Point')
+    self.coordinates = encode_geojson!(coordinates, 'Point')
     super
   end
 

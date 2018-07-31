@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :coverage_area do
-    coordinates [10, 20]
+    coordinates [[[[10, 23]]]]
+    store { build(:store).save }
   end
 end
