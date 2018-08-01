@@ -16,12 +16,14 @@ stores['pdvs'].each do |pdv|
       document: pdv['document']
     )
 
-    store.add_address(
-      coordinates: pdv['address']['coordinates']
+    Address.create(
+      coordinates: pdv['address']['coordinates'],
+      store: store
     )
 
-    store.add_coverage_area(
-      coordinates: pdv['coverageArea']['coordinates']
+    CoverageArea.create(
+      coordinates: pdv['coverageArea']['coordinates'],
+      store: store
     )
   end
 end

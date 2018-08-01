@@ -8,6 +8,7 @@ gem 'sequel'
 gem 'sinatra'
 gem 'sinatra-sequel'
 gem 'thin'
+gem 'graphql'
 
 group :development, :test do
   gem 'pry'
