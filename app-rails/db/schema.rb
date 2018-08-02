@@ -10,16 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_02_014407) do
+ActiveRecord::Schema.define(version: 2018_08_02_175728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
 
-  create_table "posts", force: :cascade do |t|
-    t.string "a"
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "store_id"
+    t.point "coordinates"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_addresses_on_store_id"
+  end
+
+  create_table "coverage_areas", force: :cascade do |t|
+    t.bigint "store_id"
+    t.geometry "coordinates", limit: {:srid=>0, :type=>"multi_polygon"}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coordinates"], name: "index_coverage_areas_on_coordinates", using: :gist
+    t.index ["store_id"], name: "index_coverage_areas_on_store_id"
   end
 
   create_table "spatials", force: :cascade do |t|
@@ -33,4 +44,14 @@ ActiveRecord::Schema.define(version: 2018_08_02_014407) do
     t.index ["poly"], name: "index_spatials_on_poly", using: :gist
   end
 
+  create_table "stores", force: :cascade do |t|
+    t.string "document"
+    t.string "owner_name"
+    t.string "tranding_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "addresses", "stores"
+  add_foreign_key "coverage_areas", "stores"
 end
