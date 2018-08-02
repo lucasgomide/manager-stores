@@ -10,4 +10,15 @@ class Store < Sequel::Model(:stores)
     validates_presence %i[tranding_name owner_name document]
     validates_unique(:document)
   end
+
+  def self.search_closest_by(lng, lat)
+    association_join(:address, :coverage_area)
+      .where(
+        Sequel.lit("ST_DWithin(coverage_area.coordinates, ST_MakePoint(?, ?)::geography, 4000)", lng, lat)
+      )
+      .order(
+        Sequel.lit("ST_Distance(address.coordinates, ST_MakePoint(?, ?)::geography)",
+        lng, lat)
+      ).all
+  end
 end

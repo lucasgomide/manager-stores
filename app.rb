@@ -8,6 +8,13 @@ require "sinatra/sequel"
 files = Dir.glob(File.join(Application.root, 'app', '**','**', '*rb'))
 files.each { |file| require file }
 
+CoverageArea.set_dataset(
+  CoverageArea.dataset.select_append{st_astext(:coordinates).as(:coordinates_st_astext)}
+)
+Address.set_dataset(
+  Address.dataset.select_append{st_astext(:coordinates).as(:coordinates_st_astext)}
+)
+
 class ManagerPOS < Sinatra::Base
   register Sinatra::SequelExtension
 

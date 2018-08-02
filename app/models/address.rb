@@ -3,7 +3,6 @@
 require_relative '../geometry/converter'
 class Address < Sequel::Model(:addresses)
   include Geometry::Converter
-
   many_to_one :store
 
   GEOMETRY_TYPE = 'Point'.freeze
@@ -12,6 +11,7 @@ class Address < Sequel::Model(:addresses)
     self.coordinates = encode_geojson!(coordinates, GEOMETRY_TYPE)
     super
   end
+
   private
 
   def validate

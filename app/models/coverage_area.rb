@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 require_relative '../geometry/converter'
-require 'pry'
 class CoverageArea < Sequel::Model(:coverage_areas)
   include Geometry::Converter
   many_to_one :store
 
   GEOMETRY_TYPE = 'MultiPolygon'.freeze
 
-  def before_create
+  def before_save
     self.coordinates = encode_geojson!(values[:coordinates], GEOMETRY_TYPE)
     super
   end
@@ -16,7 +15,7 @@ class CoverageArea < Sequel::Model(:coverage_areas)
   def coordinates
     return values[:coordinates] if values[:coordinates].is_a?(Array)
     cartesian_factory = RGeo::Cartesian.preferred_factory
-    RGeo::GeoJSON.encode(cartesian_factory.parse_wkt(values[:coordinates]))['coordinates']
+    RGeo::GeoJSON.encode(cartesian_factory.parse_wkt(values[:coordinates_st_astext]))['coordinates']
   end
 
   private
