@@ -48,3 +48,57 @@ build-iPhoneSimulator/
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+
+
+
+
+# RAILS
+
+app-rails/*.rbc
+app-rails/capybara-*.html
+app-rails/.rspec
+app-rails/log
+app-rails/tmp
+app-rails/db/*.sqlite3
+app-rails/db/*.sqlite3-journal
+app-rails/public/system
+app-rails/coverage/
+app-rails/spec/tmp
+app-rails/*.orig
+app-rails/rerun.txt
+app-rails/pickle-email-*.html
+
+# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
+app-rails/config/initializers/secret_token.rb
+app-rails/config/master.key
+
+# Only include if you have production secrets in this file, which is no longer a Rails default
+# config/secrets.yml
+
+# dotenv
+# TODO Comment out this rule if environment variables can be committed
+app-rails/.env
+
+## Environment normalization:
+app-rails/.bundle
+app-rails/vendor/bundle
+
+# these should all be checked in to normalize the environment:
+# Gemfile.lock, .ruby-version, .ruby-gemset
+
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+app-rails/.rvmrc
+
+# if using bower-rails ignore default bower_components path bower.json files
+app-rails/vendor/assets/bower_components
+app-rails/*.bowerrc
+app-rails/bower.json
+
+# Ignore pow environment settings
+app-rails/.powenv
+
+# Ignore Byebug command history file.
+app-rails/.byebug_history
+
+# Ignore node_modules
+app-rails/node_modules/

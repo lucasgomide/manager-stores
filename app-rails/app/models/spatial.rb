@@ -1,0 +1,2 @@
+class Spatial < ApplicationRecord
+end
