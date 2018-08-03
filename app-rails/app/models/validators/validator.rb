@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-module Validators::Validator
-  def add_error(field, message)
-    errors << { field: field, message: message }
-  end
+module Validators
+  module Validator
+    def add_error(field, message)
+      errors << { field: field, message: message }
+    end
 
-  def errors
-    @errors ||= []
+    def errors
+      @errors ||= []
+    end
   end
 end

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_08_02_175728) do
 
   create_table "addresses", force: :cascade do |t|
     t.bigint "store_id"
-    t.point "coordinates"
+    t.point "coordinates", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_addresses_on_store_id"
@@ -26,22 +26,11 @@ ActiveRecord::Schema.define(version: 2018_08_02_175728) do
 
   create_table "coverage_areas", force: :cascade do |t|
     t.bigint "store_id"
-    t.geometry "coordinates", limit: {:srid=>0, :type=>"multi_polygon"}
+    t.geometry "coordinates", limit: {:srid=>0, :type=>"multi_polygon"}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coordinates"], name: "index_coverage_areas_on_coordinates", using: :gist
     t.index ["store_id"], name: "index_coverage_areas_on_store_id"
-  end
-
-  create_table "spatials", force: :cascade do |t|
-    t.geometry "geo", limit: {:srid=>0, :type=>"geometry"}
-    t.geometry "poly", limit: {:srid=>0, :type=>"multi_polygon"}
-    t.point "latlon"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["geo"], name: "index_spatials_on_geo", using: :gist
-    t.index ["latlon"], name: "index_spatials_on_latlon", using: :gist
-    t.index ["poly"], name: "index_spatials_on_poly", using: :gist
   end
 
   create_table "stores", force: :cascade do |t|
