@@ -1,4 +1,3 @@
-require_relative 'geometry_type'
 module Types
   class StoreType < GraphQL::Schema::Object
     graphql_name "POS" # Point of sale

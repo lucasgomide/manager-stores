@@ -1,4 +1,3 @@
-require_relative '../types/store_type'
 module Resolvers
   class SearchResolver < GraphQL::Schema::Resolver
     type [Types::StoreType], null: false
