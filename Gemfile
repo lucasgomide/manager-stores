@@ -24,4 +24,6 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'coveralls', require: false
+  gem 'simplecov', require: false
 end
