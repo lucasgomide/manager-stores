@@ -3,8 +3,8 @@ module Validators
   class PointValidator
     include Validator
 
-    def initialize(address, geometry_validator = Geometry::Validator)
-      @address = address
+    def initialize(point, geometry_validator = Geometry::Validator)
+      @point = point
       @geometry_validator = geometry_validator
     end
 
@@ -17,7 +17,7 @@ module Validators
 
     def validate
       message_error = 'must be a valid geometry object (Point)'
-      coordinates = @address.coordinates
+      coordinates = @point.coordinates
       add_error(:coordinates, message_error) unless @geometry_validator.point?(coordinates)
     end
   end

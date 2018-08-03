@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 require 'rails_helper'
-RSpec.describe Validators::AddressValidator, type: :validator do
+RSpec.describe Validators::PointValidator, type: :validator do
   let(:geometry_validator) { spy(Geometry::Validator) }
-  subject(:validator) { described_class.new(address, geometry_validator) }
+  subject(:validator) { described_class.new(point, geometry_validator) }
 
   describe '#valid?' do
     subject(:valid?) { validator.valid? }
-    context "when address' coordinates" do
+    context "when coordinates of point" do
       context 'is invalid' do
         before do
           allow(geometry_validator).to receive(:point?) { false }
         end
 
-        let(:address) { build(:address, coordinates: nil) }
+        let(:point) { double("Point", coordinates: nil) }
 
-        let(:error_message) { 'must be a valid geometry Point' }
+        let(:error_message) { 'must be a valid geometry object (Point)' }
         it do
           valid?
           expect(validator.errors.count).to eql(1)
@@ -30,7 +30,7 @@ RSpec.describe Validators::AddressValidator, type: :validator do
 
         it do
           subject
-          expect(geometry_validator).to have_received(:point?).with(address.coordinates)
+          expect(geometry_validator).to have_received(:point?).with(point.coordinates)
         end
       end
 
@@ -38,12 +38,12 @@ RSpec.describe Validators::AddressValidator, type: :validator do
         before do
           allow(geometry_validator).to receive(:point?) { true }
         end
-        let(:address) { build(:address, coordinates: [10, 40]) }
-        it { is_expected.to be_truthy }
+        let(:point) { double("Point", coordinates: [10, 40]) }
 
+        it { is_expected.to be_truthy }
         it do
           subject
-          expect(geometry_validator).to have_received(:point?).with(address.coordinates)
+          expect(geometry_validator).to have_received(:point?).with(point.coordinates)
         end
       end
     end

@@ -3,8 +3,8 @@ module Validators
   class MultiPolygonValidator
     include Validator
 
-    def initialize(coverage_area, geometry_validator = Geometry::Validator)
-      @coverage_area = coverage_area
+    def initialize(multipolygon, geometry_validator = Geometry::Validator)
+      @multipolygon = multipolygon
       @geometry_validator = geometry_validator
     end
 
@@ -17,7 +17,7 @@ module Validators
 
     def validate
       message_error = 'must be a valid geometry object (MultiPolygon)'
-      coordinates = @coverage_area.coordinates
+      coordinates = @multipolygon.coordinates
       add_error(:coordinates, message_error) unless @geometry_validator.multipolygon?(coordinates)
     end
   end
