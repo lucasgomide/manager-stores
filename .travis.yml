@@ -1,0 +1,21 @@
+language: ruby
+rvm:
+  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
+cache: bundler
+sudo: false
+addons:
+  postgresql: 9.6
+  apt:
+    packages:
+    - postgresql-9.6-postgis-2.3
+before_script:
+  - bundle exec rake tmp:create
+  - bundle exec rake db:create
+  - bundle exec rake db:schema:load
+script:
+  - bundle exec bundle-audit
+  - bundle exec rubocop
+  - bundle exec rspec --format progress
