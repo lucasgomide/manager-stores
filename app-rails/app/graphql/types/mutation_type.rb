@@ -3,7 +3,7 @@ class Types::MutationType < GraphQL::Schema::Object
     argument :trandingName, String, required: true
     argument :owner_name, String, required: true
     argument :document, String, required: true
-    argument :address, PointInput, required: true
-    argument :coverageArea, MultiPolygonInput, required: true
+    argument :address, Inputs::PointInput, required: true
+    argument :coverageArea, Inputs::MultiPolygonInput, required: true
   end
 end
