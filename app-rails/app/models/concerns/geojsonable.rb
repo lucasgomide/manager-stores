@@ -7,7 +7,6 @@ module Geojsonable
   end
 
   def encode_coordinates!
-    return unless encode_coordinates?
     geo = {
       type: self.class::GEOMETRY_TYPE,
       coordinates: attributes['coordinates']

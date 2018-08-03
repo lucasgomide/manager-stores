@@ -2,6 +2,12 @@
 
 module Geometry
   class Validator
+    def self.point?(geometry)
+      return false unless geometry.is_a?(Array)
+      return false if geometry.first.is_a?(Array)
+      geometry.count == 2
+    end
+
     def self.multipolygon?(geometry)
       return false unless geometry.is_a?(Array)
       deep(geometry) == 3

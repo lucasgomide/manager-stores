@@ -17,10 +17,8 @@ module Validators
 
     def validate
       message_error = 'must be a valid geometry object (Point)'
-      # Postgis-adpter raises an exception as long as coordinates is not a valid object Point. So no longer custom validation is required.
-      return true if @address.coordinates
-    rescue => error
-      add_error(:coordinates, message_error)
+      coordinates = @address.coordinates
+      add_error(:coordinates, message_error) unless @geometry_validator.point?(coordinates)
     end
   end
 end
