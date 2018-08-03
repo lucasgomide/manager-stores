@@ -19,7 +19,7 @@ require "action_view/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module AppRails
+module ManagerPOS
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/app)
     config.load_defaults 5.2
