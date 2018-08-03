@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Validators
   class PointValidator
     include Validator

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Services
   module StoreService
     class Creation
@@ -6,7 +8,7 @@ module Services
           store = Store.new(
             tranding_name: args.tranding_name,
             owner_name: args.owner_name,
-            document: args.document,
+            document: args.document
           )
           store.address = Address.new(
             coordinates: args.address.coordinates

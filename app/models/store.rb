@@ -1,14 +1,20 @@
-class Store < ApplicationRecord
-  has_one :address
-  has_one :coverage_area
+# frozen_string_literal: true
 
-  validates_presence_of :document, :tranding_name, :owner_name
+class Store < ApplicationRecord
+  has_one :address, dependent: :destroy
+  has_one :coverage_area, dependent: :destroy
+
+  validates :document, :tranding_name, :owner_name, presence: true
   validates :document, uniqueness: true
 
-  scope :includes_association, ->{ eager_load(:address, :coverage_area) }
+  scope :includes_association, -> { eager_load(:address, :coverage_area) }
   scope :closest, ->(lng, lat) { order("ST_Distance(addresses.coordinates, ST_MakePoint(#{lng}, #{lat})::geography)") }
-  scope :nearby, ->(longitude, latitude, distance: 3000) do
-    where("ST_DWithin(coverage_areas.coordinates, ST_MakePoint(:lon, :lat)::geography, :distance)", lon: longitude, lat: latitude, distance: distance)
+
+  def self.nearby(longitude, latitude)
+    where(
+      'ST_DWithin(coverage_areas.coordinates, ST_MakePoint(:lon, :lat)::geography, 3000)',
+      lon: longitude, lat: latitude
+    )
   end
 
   def self.search_closest_by(longitude, latitude)

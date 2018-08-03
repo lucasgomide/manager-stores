@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Mutations
   module StoreMutation
     class Create
-      def call(obj, args, ctx)
+      def call(_obj, args, _ctx)
         ::Services::StoreService::Creation.new.call(args)
-      rescue => error
+      rescue StandardError => error
         GraphQL::ExecutionError.new(error.message)
       end
     end

@@ -1,7 +1,17 @@
-inherit_gem:
-  rubocop-rails_config:
-    - config/rails.yml
+Rails:
+  Enabled: true
+
 AllCops:
   Exclude:
-    - 'db/**'
-    - 'bin'
+    - 'spec/**/**'
+    - 'db/**/**'
+    - 'bin/**'
+    - 'vendor/**/*'
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 18

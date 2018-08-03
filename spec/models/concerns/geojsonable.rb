@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.shared_examples "Geojsonable" do
+RSpec.shared_examples "geometry type model" do
   let(:model_sym) { "#{described_class}".underscore.to_sym }
   let(:factory) { build(model_sym) }
 
