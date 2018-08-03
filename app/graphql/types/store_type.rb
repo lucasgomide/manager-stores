@@ -1,8 +1,9 @@
-require_relative 'geometry_type'
+# frozen_string_literal: true
+
 module Types
   class StoreType < GraphQL::Schema::Object
-    graphql_name "POS" # Point of sale
-    description "A point of sale"
+    graphql_name 'POS' # Point of sale
+    description 'A point of sale'
 
     global_id_field :id
     field :trandingName, String, "The POS' tranding name", hash_key: :tranding_name, null: false

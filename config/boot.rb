@@ -1,16 +1,5 @@
 # frozen_string_literal: true
 
-require File.expand_path('./application', __dir__)
-require 'logger'
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
 
-require 'bundler'
-Bundler.require
-
-$LOAD_PATH << File.expand_path(__dir__)
-
-set :environment, Application.env
-set :database, Application.configuration.database.url
-
-configure :development do
-  database.loggers << Logger.new(STDOUT)
-end
+require 'bundler/setup' # Set up gems listed in the Gemfile.

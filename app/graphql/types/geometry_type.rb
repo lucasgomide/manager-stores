@@ -1,8 +1,5 @@
-# type Geometry  {
-#   id: String!
-#   type: String!
-#   coordinates: Array!
-# }
+# frozen_string_literal: true
+
 module Types
   class GeometryType < GraphQL::Schema::Object
     global_id_field :id

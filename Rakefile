@@ -1,39 +1,8 @@
 # frozen_string_literal: true
 
-require File.expand_path('config/application', __dir__)
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-namespace :db do
-  database_name = Application.configuration.database.name
+require_relative 'config/application'
 
-  desc 'Create the database'
-  task :create do
-    sh "createdb #{database_name}"
-  end
-
-  desc 'Drop the database'
-  task :drop do
-    sh "dropdb #{database_name}"
-  end
-
-  desc 'Run migrations'
-  task :migrate, [:version] do |_t, args|
-    require 'sequel/core'
-    Sequel.extension :migration
-    version = args[:version].to_i if args[:version]
-    Sequel.connect(
-      Application.configuration.database.url
-    ) do |db|
-      Sequel::Migrator.run(db, 'db/migrations', target: version)
-    end
-  end
-
-  desc 'Add the seed data'
-  task :seed do
-    ruby './db/seeds.rb'
-  end
-end
-
-desc 'Open application console'
-task :console do
-  sh 'irb -I. -r app.rb'
-end
+Rails.application.load_tasks

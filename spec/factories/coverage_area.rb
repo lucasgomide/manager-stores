@@ -3,6 +3,10 @@
 FactoryBot.define do
   factory :coverage_area do
     coordinates [[[[10, 23]]]]
-    store { build(:store).save }
+    store { create(:store) }
+
+    trait :invalid do
+      coordinates [12, 23]
+    end
   end
 end

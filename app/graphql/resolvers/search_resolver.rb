@@ -1,4 +1,5 @@
-require_relative '../types/store_type'
+# frozen_string_literal: true
+
 module Resolvers
   class SearchResolver < GraphQL::Schema::Resolver
     type [Types::StoreType], null: false

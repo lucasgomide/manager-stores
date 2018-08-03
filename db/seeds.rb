@@ -1,29 +1,22 @@
 # frozen_string_literal: true
 
-require File.expand_path('../config/boot', __dir__)
-set :database, Application.configuration.database.url
-
-files = Dir.glob(File.join(Application.root, 'app', '**', '**', '*rb'))
-files.each { |file| require file }
-
-stores = JSON.parse(File.read('./db/stores-sample-data.json'))
+stores = JSON.parse(
+  File.read(Rails.root.join('db', 'stores-sample-data.json'))
+)
 
 stores['pdvs'].each do |pdv|
-  database.transaction do
-    store = Store.create(
+  ActiveRecord::Base.transaction do
+    store = Store.new(
       tranding_name: pdv['tradingName'],
       owner_name: pdv['ownerName'],
       document: pdv['document']
     )
-
-    Address.create(
-      coordinates: pdv['address']['coordinates'],
-      store: store
+    store.address = Address.new(
+      coordinates: pdv['address']['coordinates']
     )
-
-    CoverageArea.create(
-      coordinates: pdv['coverageArea']['coordinates'],
-      store: store
+    store.coverage_area = CoverageArea.new(
+      coordinates: pdv['coverageArea']['coordinates']
     )
+    store.save
   end
 end

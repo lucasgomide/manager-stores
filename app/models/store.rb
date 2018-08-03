@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-# Store is a model that represents each store on database
-class Store < Sequel::Model(:stores)
-  plugin :validation_helpers
-  one_to_one :coverage_area
-  one_to_one :address
+class Store < ApplicationRecord
+  has_one :address, dependent: :destroy
+  has_one :coverage_area, dependent: :destroy
 
-  def validate
-    validates_presence %i[tranding_name owner_name document]
-    validates_unique(:document)
+  validates :document, :tranding_name, :owner_name, presence: true
+  validates :document, uniqueness: true
+
+  scope :includes_association, -> { eager_load(:address, :coverage_area) }
+  scope :closest, ->(lng, lat) { order("ST_Distance(addresses.coordinates, ST_MakePoint(#{lng}, #{lat})::geography)") }
+
+  def self.nearby(longitude, latitude)
+    where(
+      'ST_DWithin(coverage_areas.coordinates, ST_MakePoint(:lon, :lat)::geography, 3000)',
+      lon: longitude, lat: latitude
+    )
   end
 
-  def self.search_closest_by(lng, lat)
-    association_join(:address, :coverage_area)
-      .where(
-        Sequel.lit("ST_DWithin(coverage_area.coordinates, ST_MakePoint(?, ?)::geography, 4000)", lng, lat)
-      )
-      .order(
-        Sequel.lit("ST_Distance(address.coordinates, ST_MakePoint(?, ?)::geography)",
-        lng, lat)
-      ).all
+  def self.search_closest_by(longitude, latitude)
+    includes_association
+      .nearby(longitude, latitude)
+      .closest(longitude, latitude)
   end
 end
