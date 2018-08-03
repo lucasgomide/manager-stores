@@ -21,6 +21,7 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'factory_bot'
   gem 'shoulda-matchers', '~> 3.1'
 end
