@@ -5,18 +5,17 @@ module Services
     class Creation
       def call(args)
         ActiveRecord::Base.transaction do
-          store = Store.new(
+          store = Store.create!(
             tranding_name: args.tranding_name,
             owner_name: args.owner_name,
             document: args.document
           )
-          store.address = Address.new(
+          store.create_address!(
             coordinates: args.address.coordinates
           )
-          store.coverage_area = CoverageArea.new(
+          store.create_coverage_area!(
             coordinates: args.coverage_area.coordinates
           )
-          store.save!
           store
         end
       end

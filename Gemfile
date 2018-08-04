@@ -26,4 +26,5 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'coveralls', require: false
   gem 'simplecov', require: false
+  gem 'recursive-open-struct', require: false
 end
