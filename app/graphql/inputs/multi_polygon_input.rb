@@ -3,6 +3,6 @@
 module Inputs
   MultiPolygonInput = GraphQL::InputObjectType.define do
     name 'MultiPolygonInput'
-    argument :coordinates, types[types[types[types[types.Int]]]]
+    argument :coordinates, types[types[types[types[types.Float]]]]
   end
 end

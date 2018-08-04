@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2018_08_02_175728) do
   create_table "stores", force: :cascade do |t|
     t.string "document"
     t.string "owner_name"
-    t.string "tranding_name"
+    t.string "trading_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

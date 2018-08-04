@@ -4,7 +4,7 @@ class Store < ApplicationRecord
   has_one :address, dependent: :destroy
   has_one :coverage_area, dependent: :destroy
 
-  validates :document, :tranding_name, :owner_name, presence: true
+  validates :document, :trading_name, :owner_name, presence: true
   validates :document, uniqueness: true
 
   scope :includes_association, -> { eager_load(:address, :coverage_area) }

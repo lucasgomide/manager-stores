@@ -6,7 +6,7 @@ module Services
       def call(args)
         ActiveRecord::Base.transaction do
           store = Store.create!(
-            tranding_name: args.tranding_name,
+            trading_name: args.trading_name,
             owner_name: args.owner_name,
             document: args.document
           )

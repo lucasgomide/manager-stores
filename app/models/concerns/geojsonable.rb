@@ -17,6 +17,14 @@ module Geojsonable
     self.coordinates = RGeo::GeoJSON.decode(geo.to_json).to_s
   end
 
+  def coordinates_to_a
+    RGeo::GeoJSON.encode(coordinates)['coordinates']
+  end
+
+  def type
+    coordinates.geometry_type.type_name
+  end
+
   def validate_geometry_object
     validator = "Validators::#{self.class::GEOMETRY_TYPE}Validator".constantize.new(self)
     add_errors(validator.errors) unless validator.valid?

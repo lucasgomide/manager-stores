@@ -2,15 +2,15 @@
 
 module Types
   class StoreType < GraphQL::Schema::Object
-    graphql_name 'POS' # Point of sale
+    graphql_name 'PDV' # Point of sale
     description 'A point of sale'
 
     global_id_field :id
-    field :trandingName, String, "The POS' tranding name", hash_key: :tranding_name, null: false
-    field :ownerName, String, "The POS' owner name", hash_key: :owner_name, null: false
-    field :document, String, "The POS' document", null: false
+    field :tradingName, String, "The PDV' tranding name", hash_key: :trading_name, null: false
+    field :ownerName, String, "The PDV' owner name", hash_key: :owner_name, null: false
+    field :document, String, "The PDV' document", null: false
 
-    field :address, GeometryType, null: true
-    field :coverageArea, GeometryType, null: true
+    field :address, Types::AddressType, null: false
+    field :coverageArea, Types::CoverageAreaType, null: false
   end
 end

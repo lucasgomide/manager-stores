@@ -3,6 +3,6 @@
 module Inputs
   PointInput = GraphQL::InputObjectType.define do
     name 'PointInput'
-    argument :coordinates, types[types.Int]
+    argument :coordinates, types[types.Float]
   end
 end

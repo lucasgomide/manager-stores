@@ -2,8 +2,8 @@
 
 module Types
   class MutationType < GraphQL::Schema::Object
-    field :createStore, Types::StoreType, null: false, resolve: Mutations::StoreMutation::Create.new do
-      argument :trandingName, String, required: true
+    field :createPDV, Types::StoreType, null: false, resolve: Mutations::StoreMutation::Create.new do
+      argument :tradingName, String, required: true
       argument :owner_name, String, required: true
       argument :document, String, required: true
       argument :address, Inputs::PointInput, required: true

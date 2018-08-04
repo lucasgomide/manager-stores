@@ -1,0 +1,9 @@
+query searchPDV($lng: Float!, $lat: Float!){
+  searchPDV(lng: $lng, lat: $lat) {
+    tradingName
+    ownerName
+    document
+    address { type coordinates }
+    coverageArea { type coordinates }
+  }
+}

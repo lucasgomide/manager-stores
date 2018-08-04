@@ -1,0 +1,10 @@
+mutation createPDV($tradingName: String!, $ownerName: String!, $document: String!, $address: PointInput!, $coverageArea: MultiPolygonInput!){
+  createPDV(tradingName: $tradingName, ownerName: $ownerName, document: $document, address: $address, coverageArea: $coverageArea) {
+    id
+    ownerName
+    tradingName
+    document
+    address {type coordinates}
+    coverageArea {type coordinates}
+  }
+}

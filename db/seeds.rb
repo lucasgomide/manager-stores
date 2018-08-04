@@ -7,7 +7,7 @@ stores = JSON.parse(
 stores['pdvs'].each do |pdv|
   ActiveRecord::Base.transaction do
     store = Store.new(
-      tranding_name: pdv['tradingName'],
+      trading_name: pdv['tradingName'],
       owner_name: pdv['ownerName'],
       document: pdv['document']
     )

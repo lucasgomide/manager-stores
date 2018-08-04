@@ -1,0 +1,10 @@
+query getPDV($id: Int!){
+  getPDV(id: $id) {
+    id
+    ownerName
+    tradingName
+    document
+    address {type coordinates}
+    coverageArea {type coordinates}
+  }
+}

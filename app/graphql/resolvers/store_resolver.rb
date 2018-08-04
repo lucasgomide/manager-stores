@@ -7,7 +7,7 @@ module Resolvers
     argument :id, Int, required: false
 
     def resolve(id:)
-      Store.eager_load(:address, :coverage_area).find(id)
+      Store.eager_load(:address, :coverage_area).find_by(id: id)
     end
   end
 end
