@@ -81,7 +81,6 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: manager-pos_production
-  username: manager-pos
-  password: <%= ENV['manager-pos_DATABASE_PASSWORD'] %>
+  encoding: unicode
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
+  pool: 15
