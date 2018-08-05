@@ -2,7 +2,7 @@
 
 class GraphqlController < ApplicationController
   def graphql
-    variables = params[:variables]
+    variables = params[:variables] || '{}'
     query = params[:query]
     render json: schema.execute(query, variables: JSON.parse(variables))
   rescue StandardError => e

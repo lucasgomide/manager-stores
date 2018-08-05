@@ -55,5 +55,7 @@ RSpec.describe GraphqlController, type: :controller do
         expect(JSON.parse(response.body)['data']).to eql({})
       end
     end
+
+    pending 'no variable have received'
   end
 end
