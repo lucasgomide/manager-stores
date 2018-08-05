@@ -6,12 +6,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'activerecord-postgis-adapter'
 gem 'bundler-audit'
 gem 'graphql'
+gem 'newrelic_rpm'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'rails', '~> 5.2.0'
-gem 'rgeo-geojson'
 gem 'puma'
 gem 'rack-timeout'
-gem 'newrelic_rpm'
+gem 'rails', '~> 5.2.0'
+gem 'rgeo-geojson'
 gem 'rollbar'
 
 group :development, :test do
