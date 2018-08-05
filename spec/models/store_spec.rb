@@ -18,7 +18,7 @@ RSpec.describe Store, type: :model do
 
     before { create_stores }
 
-    context "when there's no a POS" do
+    context "when there's no a PDV" do
       let(:coordinates) { { lng: -45.8859658241272, lat: -23.180487428061262 } }
       it { is_expected.to be_empty }
     end
@@ -44,7 +44,7 @@ RSpec.describe Store, type: :model do
       end
     end
 
-    context "when there's a POS" do
+    context "when there's a PDV" do
       let(:coordinates) { { lng: -45.89032173156738, lat: -23.17630558165721 } }
 
       it do

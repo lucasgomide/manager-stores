@@ -64,12 +64,12 @@ RSpec.describe Schema do
 
     subject(:result) { execute["data"]["getPDV"] }
 
-    context "when there's no a POS" do
+    context "when there's no a PDV" do
       let(:id) { 1 }
       it { is_expected.to be_nil }
     end
 
-    context "when there's a POS" do
+    context "when there's a PDV" do
       let(:store) { create(:store, :with_address_and_coverage) }
       let(:id) { store.id }
 
@@ -103,7 +103,7 @@ RSpec.describe Schema do
 
     subject(:result) { execute["data"]["searchPDV"] }
 
-    context "when there's no a POS" do
+    context "when there's no a PDV" do
       let(:cood) { { lng: -45.8859658241272, lat: -23.180487428061262 } }
       before { create_stores }
       it { is_expected.to be_nil }
@@ -130,7 +130,7 @@ RSpec.describe Schema do
       end
     end
 
-    context "when there's a POS" do
+    context "when there's a PDV" do
       let(:cood) { { lng: -45.87882041931152, lat: -23.178919250974054 } }
       before { create_stores }
       let(:id) { store.id }
