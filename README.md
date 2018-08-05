@@ -1,6 +1,7 @@
 # README
 
 [![Build Status](https://travis-ci.org/lucasgomide/manager-stores.svg?branch=master)](https://travis-ci.org/lucasgomide/manager-stores)
+[![Coverage Status](https://coveralls.io/repos/github/lucasgomide/manager-stores/badge.svg?branch=master)](https://coveralls.io/github/lucasgomide/manager-stores?branch=master)
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
