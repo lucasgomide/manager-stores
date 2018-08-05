@@ -12,6 +12,7 @@ gem 'rgeo-geojson'
 gem 'puma'
 gem 'rack-timeout'
 gem 'newrelic_rpm'
+gem 'rollbar'
 
 group :development, :test do
   gem 'pry-nav'

@@ -159,6 +159,8 @@ GEM
       rgeo (~> 1.0)
     rgeo-geojson (2.0.0)
       rgeo (~> 1.0)
+    rollbar (2.16.4)
+      multi_json
     rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
@@ -238,6 +240,7 @@ DEPENDENCIES
   rails (~> 5.2.0)
   recursive-open-struct
   rgeo-geojson
+  rollbar
   rspec-its
   rspec-rails (~> 3.7)
   rubocop
