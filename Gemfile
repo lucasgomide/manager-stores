@@ -9,6 +9,7 @@ gem 'graphql'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'rails', '~> 5.2.0'
 gem 'rgeo-geojson'
+gem 'puma'
 
 group :development, :test do
   gem 'pry-nav'
