@@ -8,12 +8,21 @@ class Store < ApplicationRecord
   validates :document, uniqueness: true
 
   scope :includes_association, -> { eager_load(:address, :coverage_area) }
-  scope :closest, ->(lng, lat) { order("ST_Distance(addresses.coordinates, ST_MakePoint(#{lng}, #{lat})::geography)") }
+
+  RADIUS_COVERAGE = 0
+
+  def self.closest(lng, lat)
+    order(
+      Arel.sql(
+        "ST_Distance(addresses.coordinates, ST_MakePoint(#{lng}, #{lat})::geography)"
+      )
+    )
+  end
 
   def self.nearby(longitude, latitude)
     where(
-      'ST_DWithin(coverage_areas.coordinates, ST_MakePoint(:lon, :lat)::geography, 3000)',
-      lon: longitude, lat: latitude
+      'ST_DWithin(coverage_areas.coordinates, ST_MakePoint(:lon, :lat)::geography, :radius)',
+      lon: longitude, lat: latitude, radius: RADIUS_COVERAGE
     )
   end
 
