@@ -24,3 +24,7 @@ Things you may want to cover:
 - Deployment instructions
 
 - ...
+
+## Testing benchmarking
+
+Dependencies: wrk (for [Linux](https://github.com/wg/wrk/wiki/Installing-Wrk-on-Linux), for [OSx](https://github.com/wg/wrk/wiki/Installing-wrk-on-OS-X))
