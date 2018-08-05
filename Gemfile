@@ -11,6 +11,7 @@ gem 'rails', '~> 5.2.0'
 gem 'rgeo-geojson'
 gem 'puma'
 gem 'rack-timeout'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'pry-nav'
