@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Schema < GraphQL::Schema
+  use GraphQL::Tracing::NewRelicTracing
   query Types::QueryType
   mutation Types::MutationType
 
