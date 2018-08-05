@@ -10,6 +10,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'rails', '~> 5.2.0'
 gem 'rgeo-geojson'
 gem 'puma'
+gem 'rack-timeout'
 
 group :development, :test do
   gem 'pry-nav'
