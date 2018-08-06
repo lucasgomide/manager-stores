@@ -1,30 +1,39 @@
-# README
+# manager-stores
 
 [![Build Status](https://travis-ci.org/lucasgomide/manager-stores.svg?branch=master)](https://travis-ci.org/lucasgomide/manager-stores)
 [![Coverage Status](https://coveralls.io/repos/github/lucasgomide/manager-stores/badge.svg?branch=master)](https://coveralls.io/github/lucasgomide/manager-stores?branch=master)
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+_App have to be descripted here_
 
-- Ruby version
+## Routes
 
-- System dependencies
+Some routes
 
-- Configuration
+## Deployment
 
-- Database creation
+We're using Heroku as PAAS. So it's easy to deploy this app.
+The command `git push heroku master` that's enough to do it.
 
-- Database initialization
+## Monitoring
 
-- How to run the test suite
+We're using NewRelic as Monitoring APM.
 
-- Services (job queues, cache servers, search engines, etc.)
+### Error Tracker
 
-- Deployment instructions
+We're using Rollbar as Tracking Error.
 
-- ...
+## Benchmarking
 
-## Testing benchmarking
+We're using wrk (for [Linux](https://github.com/wg/wrk/wiki/Installing-Wrk-on-Linux), for [OSx](https://github.com/wg/wrk/wiki/Installing-wrk-on-OS-X)) as tool for benchmarking app
 
-Dependencies: wrk (for [Linux](https://github.com/wg/wrk/wiki/Installing-Wrk-on-Linux), for [OSx](https://github.com/wg/wrk/wiki/Installing-wrk-on-OS-X))
+Just run at root app `./benchmarking/benchmark.sh`
+
+## Docker
+
+- docker-compose build
+- docker-compose run app rake db:setup
+- docker-compose up
+
+## Testing
+
+- rspec
