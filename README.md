@@ -31,7 +31,6 @@ Just run at root app `./benchmarking/benchmark.sh`
 ## Docker
 
 - docker-compose build
-- docker-compose run app rake db:setup
 - docker-compose up
 
 ## Testing

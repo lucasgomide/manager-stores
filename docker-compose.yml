@@ -1,0 +1,17 @@
+version: '2'
+services:
+  db:
+    image: mdillon/postgis:latest
+    ports:
+      - 5432:5432
+  app:
+    tty: true
+    stdin_open: true
+    build: .
+    command: containers/scripts/wait-for-it.sh db:5432 -- containers/development/entrypoint
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/app/manager-stores
+    ports:
+      - 3000:3000
