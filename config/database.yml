@@ -5,13 +5,14 @@ default: &default
   timeout: 5000
   username: postgres
   password: <%= ENV['PGPASSWORD'] %>
-  host: db
 test:
   <<: *default
   database: manager-stores_test
+  host: db
 development:
   <<: *default
   database: manager-stores_development
+  host: db
 production:
   url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
   pool: 15
