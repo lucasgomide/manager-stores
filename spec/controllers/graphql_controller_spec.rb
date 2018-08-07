@@ -1,8 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe GraphqlController, type: :controller do
-  describe "POST graphql" do
-    let(:schema) { spy(Schema) }
+  let(:schema) { spy(Schema) }
+
+  describe "GET /graphql" do
+    let(:query) { "{searchClosestPDV(ng: -40.36556, lat: -22.99669){ownerName}}" }
+    subject(:request) {
+      get :graphql, params: { query: query }
+    }
+
+    it { is_expected.to have_http_status(:ok) }
+    its(:content_type) { is_expected.to eq("application/json") }
+  end
+
+  describe "POST /graphql" do
     let(:query) do
       File.read(Rails.root.join('spec', 'fixtures', 'graphql', 'query', 'create_pdv.graphql'))
     end
@@ -56,6 +67,9 @@ RSpec.describe GraphqlController, type: :controller do
       end
     end
 
-    pending 'no variable have received'
+    context 'no variable have received' do
+      let(:body) { { query: query } }
+      it { is_expected.to have_http_status(:ok) }
+    end
   end
 end
