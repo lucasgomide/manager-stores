@@ -42,10 +42,11 @@ That's the graphQL schema supported:
 
 It means you can get all of them data. Once given the API will return it.
 
-[Query/Output examples](link)
-[Using with variables](link)
+[Query/Output examples](https://github.com/lucasgomide/manager-stores/wiki/Query-and-Output-samples)
 
-### getPDV
+[Using variables](https://github.com/lucasgomide/manager-stores/wiki/Using-variables)
+
+### [getPDV](https://github.com/lucasgomide/manager-stores/wiki/Query-and-Output-samples#find-a-specific-pos-one)
 
 Providing some id this route returns the POS.
 
@@ -53,7 +54,7 @@ Method: GET
 
 URL: `https://manager-stores.herokuapp.com/graphql?query={getPDV(id: 11){ownerName}}`
 
-### createPDV
+### [createPDV](https://github.com/lucasgomide/manager-stores/wiki/Query-and-Output-samples#creating-a-new-pos)
 
 Giving an input this request will try create the resource.
 
@@ -81,7 +82,7 @@ mutation {
 }
 ```
 
-### searchClosestPDV
+### [searchClosestPDV](https://github.com/lucasgomide/manager-stores/wiki/Query-and-Output-samples#the-closest-pos-with-coverage)
 
 Providing latitude and longitude the closest POS with coverage this area.
 
