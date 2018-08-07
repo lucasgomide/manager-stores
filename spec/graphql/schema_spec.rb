@@ -94,14 +94,14 @@ RSpec.describe Schema do
   end
 
 
-  describe "#searchPDV" do
+  describe "#searchClosestPDV" do
     let(:query_string) do
-      File.read(Rails.root.join('spec', 'fixtures', 'graphql', 'query', 'search_pdv.graphql'))
+      File.read(Rails.root.join('spec', 'fixtures', 'graphql', 'query', 'search_closest_pdv.graphql'))
     end
 
     let(:variables) { cood }
 
-    subject(:result) { execute["data"]["searchPDV"] }
+    subject(:result) { execute["data"]["searchClosestPDV"] }
 
     context "when there's no a PDV" do
       let(:cood) { { lng: -45.8859658241272, lat: -23.180487428061262 } }

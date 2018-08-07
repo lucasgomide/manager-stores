@@ -1,5 +1,5 @@
-query searchPDV($lng: Float!, $lat: Float!){
-  searchPDV(lng: $lng, lat: $lat) {
+query searchClosestPDV($lng: Float!, $lat: Float!){
+  searchClosestPDV(lng: $lng, lat: $lat) {
     tradingName
     ownerName
     document
